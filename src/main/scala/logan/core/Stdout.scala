@@ -4,7 +4,11 @@ import akka.actor.{ActorRef, Props}
 import logan.actors.StdoutActor
 
 object Stdout {
-  implicit class TransformToString(val source: Transform[_, String]) {
+  implicit class StdoutFromTransform(val source: Transform[_, String]) {
+    def stdout() = new Stdout(source.context, source)
+  }
+
+  implicit class StdoutFromSource(val source: Source[String]) {
     def stdout() = new Stdout(source.context, source)
   }
 }

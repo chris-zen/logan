@@ -10,7 +10,9 @@ class TransformActor[S, T](node: Transform[S, T], consumers: Seq[ActorRef])
     case msg =>
       log.debug(msg.toString)
       val result = node.compute(msg.asInstanceOf[S])
-      for (consumer <- consumers)
-        consumer ! result
+      result.foreach { r =>
+        for (consumer <- consumers)
+          consumer ! r
+      }
   }
 }

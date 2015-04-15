@@ -1,9 +1,11 @@
 package logan.actors
 
-import akka.actor.{ActorLogging, ActorRef, Actor}
+import akka.actor.{Actor, ActorLogging, ActorRef}
 import logan.core.Node
 
-abstract class NodeActor(val node: Node, val consumers: Seq[ActorRef])
+case class RequestMore()
+
+abstract class NodeActor(val node: Node, val parents: Seq[ActorRef], val consumers: Seq[ActorRef])
   extends Actor with ActorLogging {
 
 }

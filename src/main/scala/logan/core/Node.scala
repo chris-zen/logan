@@ -1,6 +1,6 @@
 package logan.core
 
-import akka.actor.{Props, ActorRef}
+import akka.actor.{ActorRef, Props}
 
 abstract class Node(
   val context: Context,

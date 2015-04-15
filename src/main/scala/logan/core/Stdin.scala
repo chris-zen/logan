@@ -1,6 +1,6 @@
 package logan.core
 
-import akka.actor.{Props, ActorRef}
+import akka.actor.{ActorRef, Props}
 import logan.actors.StdinActor
 
 class Stdin(context: Context)

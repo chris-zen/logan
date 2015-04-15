@@ -1,9 +1,9 @@
 package logan.actors
 
-import akka.actor.{ActorRef, ActorLogging, Actor}
+import akka.actor.{Actor, ActorLogging, ActorRef}
 import logan.actors.ContextSupervisor.MaterializeGraph
-import logan.core.{Node, Context}
-import logan.graph.{TopologicalSort, DiGraph}
+import logan.core.{Context, Node}
+import logan.graph.{DiGraph, TopologicalSort}
 
 object ContextSupervisor {
 

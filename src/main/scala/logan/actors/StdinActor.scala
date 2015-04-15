@@ -9,7 +9,6 @@ import scala.concurrent.Future
 class StdinActor(node: Node, consumers: Seq[ActorRef])
   extends NodeActor(node, consumers) {
 
-  case class RequestMore()
   case class ReadLine()
   case class SendLine(line: String)
 
@@ -20,6 +19,9 @@ class StdinActor(node: Node, consumers: Seq[ActorRef])
   implicit val ec = context.dispatcher
 
   def receive = {
+    case RequestMore =>
+      self ! ReadLine
+
     case ReadLine =>
       Future {
         SendLine(Console.in.readLine())
@@ -27,5 +29,6 @@ class StdinActor(node: Node, consumers: Seq[ActorRef])
 
     case SendLine(line) =>
       consumers.foreach({ s => s ! line})
+      self ! ReadLine
   }
 }
